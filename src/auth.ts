@@ -3,6 +3,7 @@ import type { Provider } from "next-auth/providers"
 import Credentials from "next-auth/providers/credentials"
 import Google from "next-auth/providers/google"
 import Resend from "next-auth/providers/resend"
+import { PrismaAdapter } from "@auth/prisma-adapter"
 import { prisma } from "@/lib/prisma/client"
 import { authConfig } from "@/auth.config"
 
@@ -55,6 +56,7 @@ if (process.env.NODE_ENV !== "production") {
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
+  adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
   providers,
   callbacks: {

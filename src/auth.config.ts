@@ -17,7 +17,8 @@ export const authConfig: NextAuthConfig = {
       const isProtected =
         path.startsWith("/dashboard") ||
         path.startsWith("/resume") ||
-        path.startsWith("/billing")
+        path.startsWith("/billing") ||
+        path.startsWith("/cover-letter")
 
       if (isProtected && !isLoggedIn) return false
       return true
